@@ -10,23 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model workout {
+model workouts {
   workoutID   Int      @id @default(autoincrement())
   userID      Int
   workoutName String
   createdDate DateTime @default(now())
 
   // Define a relation to workoutSets
-  workoutSets workoutSet[]
+  workout_sets workout_sets[]
 }
 
-model workoutSet {
+model workout_sets {
   workoutSetsID Int      @id @default(autoincrement())
   workoutID     Int
-  exersiceID    Int
+  exerciseID    Int
   reps         Int
   weights      Float
 
   // Define relations to workouts and exercises
-  workout   workout  @relation(fields: [workoutID], references: [workoutID])
+  workout   workouts  @relation(fields: [workoutID], references: [workoutID])
 }
