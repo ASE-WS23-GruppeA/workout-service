@@ -20,7 +20,7 @@ app.post('/workouts', async (req, res) => {
                 userID,
                 workoutName,
                 workout_sets: {
-                    create: workoutSets, // Assumes workoutSets is an array of objects
+                    create: workoutSets, // workoutSets is an array of objects
                 },
             },
         });
@@ -54,6 +54,7 @@ app.get('/workouts/:workoutID', async (req, res) => {
     }
 });
 
+// Retrieve all workouts associated with the specified user
 app.get('/workouts/user/:userID', async (req, res) => {
     try {
         const userID = parseInt(req.params.userID);
@@ -71,6 +72,7 @@ app.get('/workouts/user/:userID', async (req, res) => {
     }
 });
 
+// Retrieve the last workout associated with the specified user
 app.get('/workouts/last/:userID', async (req, res) => {
     try {
         const userID = parseInt(req.params.userID);
@@ -93,6 +95,7 @@ app.get('/workouts/last/:userID', async (req, res) => {
     }
 });
 
+// Retrieve the workout with the specified name associated with the specified user 
 app.get('/workouts/user/:userID/:workoutName', async (req, res) => {
     try {
         const userID = parseInt(req.params.userID);
@@ -115,6 +118,7 @@ app.get('/workouts/user/:userID/:workoutName', async (req, res) => {
     }
 });
 
+// Delete a specific workout and its associated workoutSets
 app.delete('/workouts/:workoutID', async (req, res) => {
     try {
         const workoutID = parseInt(req.params.workoutID);

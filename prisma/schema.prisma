@@ -27,6 +27,6 @@ model workout_sets {
   reps         Int
   weights      Float
 
-  // Define relations to workouts and exercises
+  // Define relations to workouts
   workout   workouts  @relation(fields: [workoutID], references: [workoutID])
 }
