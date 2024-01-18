@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "devStart": "nodemon workout.js"
   },
   "repository": {
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@prisma/client": "^5.5.2",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.1",
     "pg": "^8.11.3",
     "prisma": "^5.5.2"
