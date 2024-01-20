@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "devStart": "nodemon workout.js"
+    "start": "nodemon workout.js"
   },
   "repository": {
     "type": "git",
