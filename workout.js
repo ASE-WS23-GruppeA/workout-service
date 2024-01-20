@@ -1,11 +1,13 @@
 const express = require('express');
 const workoutService = require('./workoutService');
+const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT;
 
 // Middleware to parse JSON in request bodies
 app.use(express.json());
+app.use(cors());
 
 // Create a new workout
 app.post('/workouts', workoutService.setWorkoutHandler);
