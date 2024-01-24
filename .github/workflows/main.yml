@@ -1,25 +1,40 @@
-name: Node.js CI
+name: CI/CD Pipeline for the Workout Service
 
 on:
   push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  test:
+    uses: ASE-WS23-GruppeA/workout-tracker/.github/workflows/node-test.yml@main
 
-    steps:
-    - uses: actions/checkout@v2
+  build-and-push-docker-image-app:
+    needs: test
+    uses: ASE-WS23-GruppeA/workout-tracker/.github/workflows/docker-build-and-push.yml@main
+    with:
+      docker_image_tag: 'registry.digitalocean.com/do-ase-registry/workout-service'
+      docker_build_dockerfile_path: 'Dockerfile.app'
+      skip_artifact_download: true
+      add_env_file: true
+    secrets:
+      DIGITALOCEAN_ACCESS_TOKEN: "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}"
+      ENCODED_ENV_FILE: "${{ secrets.ENCODED_ENV_FILE }}"
 
-    - name: Use Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
+  build-and-push-docker-image-insertion:
+    needs: test
+    uses: ASE-WS23-GruppeA/workout-tracker/.github/workflows/docker-build-and-push.yml@main
+    with:
+      docker_image_tag: 'registry.digitalocean.com/do-ase-registry/workout-service-insertion'
+      docker_build_dockerfile_path: 'Dockerfile.insertion'
+      skip_artifact_download: true
+      add_env_file: true
+    secrets:
+      DIGITALOCEAN_ACCESS_TOKEN: "${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}"
+      ENCODED_ENV_FILE: "${{ secrets.ENCODED_ENV_FILE }}"
 
-    - name: Install Dependencies
-      run: npm install
-      
-    - name: Run Tests
-      run: npm test
+  restart-application:
+    needs: [ build-and-push-docker-image-app, build-and-push-docker-image-insertion ]
+    uses: ASE-WS23-GruppeA/workout-tracker/.github/workflows/docker-compose-restart.yml@main
+    secrets:
+      DROPLET_IP_ADDRESS: "${{ secrets.DROPLET_IP_ADDRESS }}"
+      DROPLET_SSH_KEY: "${{ secrets.DROPLET_SSH_KEY }}"
