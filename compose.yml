@@ -1,6 +1,16 @@
 version: '3.8'
 services:
 
+  workout-service:
+    build: 
+      context: .
+      dockerfile: Dockerfile.app
+    ports:
+      - "3030:3030"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DATABASE_URL=${DATABASE_URL}
+
   database:
     image: postgres:latest
     environment:
@@ -11,15 +21,9 @@ services:
       - "5432:5432" 
 
   prisma-migrate:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile.migration
     command: npx prisma migrate deploy
     depends_on:
       - database     
-
-  workout-service:
-    build: .
-    ports:
-      - "3030:3030"
-    environment:
-      - NODE_ENV=${NODE_ENV}
-      - DATABASE_URL=${DATABASE_URL}
