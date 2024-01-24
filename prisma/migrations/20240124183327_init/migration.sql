@@ -1,19 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `workout` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `workoutSet` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "workoutSet" DROP CONSTRAINT "workoutSet_workoutID_fkey";
-
--- DropTable
-DROP TABLE "workout";
-
--- DropTable
-DROP TABLE "workoutSet";
-
 -- CreateTable
 CREATE TABLE "workouts" (
     "workoutID" SERIAL NOT NULL,

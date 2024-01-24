@@ -23,6 +23,7 @@ logs/
 *.log
 *.log.*
 debug.log
+gen.py
 
 # Environmental Files
 .env
