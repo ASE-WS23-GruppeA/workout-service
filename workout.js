@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 // Create a new workout
-app.post('/workouts', workoutService.setWorkoutHandler);
+app.post('/workouts/create', workoutService.setWorkoutHandler);
 
 // Retrieve a specific workout by its ID
 app.get('/workouts/:workoutID', workoutService.getWorkoutById);
