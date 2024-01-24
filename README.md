@@ -29,7 +29,7 @@ To run the "Workouts Service," follow these steps:
     ```
 4. Start the server:
     ```bash
-    npm run devStart
+    npm start
     ```
 The service should now be accessible at http://localhost:3000 by default.
 
