@@ -468,42 +468,6 @@
     ]
   },
   {
-    "workoutID": 29,
-    "userID": 100,
-    "workoutName": "Back Day",
-    "createdDate": "2024-01-26T16:52:10Z",
-    "workout_sets": [
-      {
-        "workoutSetsID": 290,
-        "workoutID": 29,
-        "exerciseID": 1,
-        "reps": 15,
-        "weights": 20
-      },
-      {
-        "workoutSetsID": 291,
-        "workoutID": 29,
-        "exerciseID": 1,
-        "reps": 8,
-        "weights": 60
-      },
-      {
-        "workoutSetsID": 292,
-        "workoutID": 29,
-        "exerciseID": 1,
-        "reps": 8,
-        "weights": 40
-      },
-      {
-        "workoutSetsID": 293,
-        "workoutID": 29,
-        "exerciseID": 10,
-        "reps": 12,
-        "weights": 40
-      }
-    ]
-  },
-  {
     "workoutID": 30,
     "userID": 100,
     "workoutName": "Chest Day",
