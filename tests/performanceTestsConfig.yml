@@ -1,0 +1,17 @@
+config:
+  target: 'http://localhost:3030'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+  variables:
+    userId: ["1", "2", "3"]  # Example user IDs
+    workoutId: ["5", "6", "7"]  # Example workout IDs
+
+scenarios:
+  - flow:
+      - get:
+          url: "/workouts"
+      - get:
+          url: "/workouts/user/{{ userId }}"
+      - get:
+          url: "/workouts/{{ workoutId }}"
